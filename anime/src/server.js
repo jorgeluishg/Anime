@@ -3,7 +3,7 @@
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('postgres://jorge:hurtarte3018@localhost:5432/anime');
+const sequelize = new Sequelize('postgres://jorge:hurtarte3018@35.227.59.176:5432/animes');
 sequelize
   .authenticate()
   .then(() => {
@@ -14,17 +14,14 @@ sequelize
   });
 
 
-const anime = sequelize.define('anime', {
-	codigo: {
-	  type: Sequelize.INTEGER
-	},
+const anime = sequelize.define('animes', {
 	nombre: {
 		type: Sequelize.STRING
 	},
 	genero: {
 		type: Sequelize.STRING
 	},
-	espisodios: {
+	capitulos: {
 		type: Sequelize.INTEGER
 	},
 	emision: {
@@ -69,7 +66,7 @@ router.get('/', function(req, res) {
 });
 
 // more routes for our API will happen here
-router.route('/anime')
+router.route('/animes')
  
   // create a product accessed at POST
   // http://localhost:8080/api/products
@@ -78,10 +75,10 @@ router.route('/anime')
  
 	 return anime
 	 .create({ 
-		 				codigo: req.body.codigo, 
+		 			 
 						nombre: req.body.nombre, 
 						genero: req.body.genero, 
-						episodios : req.body.episodios,
+						capitulos: req.body.capitulos,
 						emision: req.body.emision 
 					})
 					.then(todoItem => res.status(201).send(todoItem))
@@ -97,7 +94,7 @@ router.route('/anime')
  });
 
 // on routes that end in /products/:anime_id
-router.route('/anime/:anime_id')
+router.route('/animes/:anime_id')
  // get the device with that id 
  // accessed at GET 
  // http://localhost:8080/api/anime/:anime_id
